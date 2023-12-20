@@ -1,4 +1,3 @@
-
 Node {
     docker{
         image 'node:16-buster-slim'
