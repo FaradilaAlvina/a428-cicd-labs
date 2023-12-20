@@ -5,7 +5,9 @@ node {
             args '-p 3000:3000'
     }
     }
-    stage('Build'){
+    checkout scm{
+        stage('Build'){
         npm install
+    }
     }
 }
