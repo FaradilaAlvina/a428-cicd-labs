@@ -19,7 +19,7 @@ pipeline {
         stage('Manual Approval') {
             steps {
                 script {
-                    def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'admin', parameters: [choice(choices: ['Proceed', 'Abort'])]
+                    def deploymentDelay = input id: 'Deploy', message: 'Lanjutkan ke tahap Deploy?', submitter: 'admin', parameters: [choice choices: ['Proceed', 'Abort']]
                 }
             }
         } 
