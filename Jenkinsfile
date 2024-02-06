@@ -16,21 +16,13 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Manual Approval'){
-            input{
-                message 'Lanjutkan ke tahap Deploy?'
-                id 'envId'
-                ok 'Submit'
-                submitterParameter 'approverId'
-                parameter{
-                    choice choices: ['Proceed', 'Abort'], name: 'envType'
-                }
-
-                steps{
-                    echo "Deployment approved to ${envType} by ${approverId}."
+        stage('Approval') {
+            steps {
+                script {
+                    def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'admin', parameters: [choice(choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'], description: 'Hours to delay deployment?', name: 'deploymentDelay')]
                 }
             }
-        }
+        } 
         stage('Deploy') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
